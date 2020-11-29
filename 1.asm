@@ -38,26 +38,23 @@ MAIN proc near
         mov, date, ax
         call DISP
 ;Searching y
-        mov bx, 2215
-        sub bx, 215
-        mov ax, 2
-        mul bx
-        mov date, ax 
-  
-        mov ax, 8
-        mov bl, 2
-        div bl
-        cbw
-        mov date2, ax        
-        mov ax, date
-        mul date2
-        mov date2, ax
-
-        mov ax, 945
-        add ax, 275
+        
+        mov ax, 2215
+        sub ax, 215
         cwd
-        mov bx, 555
-        add bx, 55
+        mov bx, 21
+        add bx, 39
+        sub bx, 10
+        div bx
+        mov date, ax
+        ;----
+
+        mov ax, 440
+        sub ax, 40
+        add ax, 20
+        cwd
+        mov bx, 200
+        add bx, 10
         div bx
         mov date, ax
         mov bx, date2
