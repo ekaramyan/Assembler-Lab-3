@@ -12,53 +12,47 @@ Hu      db          ?
 Tens    db          ?
 Ones    db          ?
 ;---------------------------------
+tmp1 dw ?
+tmp2 dw ?
+tmp3 dw ?
 ; ----------------- My variables ------------------------------
 
 MAIN proc near
 ; ---------------- My Commands ---------------------------------
 ;Searching X
+
+; ((1980-1955)/5)*2+10+586
+
         mov ax, 1980
-        mov bx, 1955
-        sub ax, bx ;1980-1955
-        mov date, ax
-        
-        mov bx, 5
-        div bx
-        
-        mov date, ax;(1980-1955)/5
-
-        mov bx, 2
-        mul bx; ((1980-1955)/5)*2
-        mov date, ax
-        
-        mov bx, 10 
-        add ax, bx
+        sub ax, 1955 ;1980-1955
+        mov bl, 5
+        cbw
+        idiv bl
+        cbw
+;(1980-1955)/5
+        mov bl, 2
+        imul bl; ((1980-1955)/5)*2
+        add ax, 10
         add ax, 586 ; ((1980-1955)/5)*2+10+586
-
-        mov, date, ax
+        mov date, ax
         call DISP
 ;Searching y
         
         mov ax, 2215
         sub ax, 215
+        mov tmp1, 21
+        add tmp1, 39
+        sub tmp1, 10
         cwd
-        mov bx, 21
-        add bx, 39
-        sub bx, 10
-        div bx
-        mov date, ax
-        ;----
-
+        idiv tmp1
+        mov bx, ax
         mov ax, 440
         sub ax, 40
         add ax, 20
-        cwd
-        mov bx, 200
-        add bx, 10
-        div bx
-        mov date, ax
-        mov bx, date2
-        mul bx
+        mov tmp2, 200
+        add tmp2, 10
+        idiv tmp2
+        imul bx
         
         mov date, ax
         
